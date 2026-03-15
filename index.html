@@ -307,7 +307,8 @@
         popup.style.width = w + 'px';
         popup.style.height = h + 'px';
         popup.classList.add('artist-card-hover-visible');
-        vid.muted = true;
+        vid.muted = !isSoundOn();
+        vid.volume = 0.8;
         vid.currentTime = 0;
         vid.play().catch(function() {});
       }
