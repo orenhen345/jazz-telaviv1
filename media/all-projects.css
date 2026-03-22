@@ -2,22 +2,32 @@
   סוף גלילה = תחתית פריים הקונקט: גובה המסמך = תוכן בלבד.
   בלי min-height: 100vh — אחרת נשאר רקע כהה (זנב) מתחת לקונקט כשהתוכן נמוך מגובה המסך.
 */
+/*
+  פס גלילה כפול: overflow-x על body גורם ל־overflow-y:auto על body (מסמך) + גלילת viewport.
+  פתרון: גלילה רק על html (overflow-x:hidden + overflow-y:auto), body בלי overflow.
+*/
 html:has(body.all-projects-page) {
   height: auto;
   min-height: 0;
-  overflow-x: clip;
+  overflow-x: hidden;
+  overflow-y: auto;
   scroll-padding-bottom: 0;
 }
 
 /* כל הפרויקטים: אותו לקסיקון קונקט כמו דף הבית — גובה לפי תוכן, בלי חצי פריים / margin שלילי */
+/* דורס את body { overflow-x:hidden } מ־styles.css — יחד עם זה נוצר overflow-y:auto על body ופס גלילה כפול */
 .all-projects-page {
   background: #1e1c21;
   min-height: unset;
+  height: fit-content;
+  display: flow-root;
   color: #fff;
   /* No horizontal padding on body — connect bundle must full-bleed like work pages (was clipped on sides) */
   padding: 2rem 0 0;
   margin-bottom: 0;
   padding-bottom: 0;
+  overflow-x: visible;
+  overflow-y: visible;
 }
 
 .projects-under-gap {
@@ -50,6 +60,14 @@ html:has(body.all-projects-page) {
 .all-projects-page .home-contact-frame {
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+/*
+  min-height:100% על .home-contact-bg (styles.css) מול הורה עם height:auto יכול להתנפח
+  ולהאריך את scrollHeight מתחת לפריים — בלי לשנות מראה (ה־SVG עדיין inset:0 ממלא את הפריים).
+*/
+.all-projects-page .home-contact-bg {
+  min-height: 0;
 }
 
 .all-projects-page .hero-footer-bar {
