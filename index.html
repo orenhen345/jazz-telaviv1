@@ -243,14 +243,12 @@
           }
 
           var items = Array.prototype.slice.call(marqueeInner.querySelectorAll('.marquee-item'));
-          var maxIcons = 8;
-          var inserted = 0;
-          for (var i = 0; i < items.length && inserted < maxIcons; i++) {
-            if (Math.random() < 0.22) {
-              var iconPath = iconFiles[Math.floor(Math.random() * iconFiles.length)];
-              items[i].parentNode.insertBefore(makeIconSpan(iconPath), items[i]);
-              inserted++;
-            }
+          // Deterministic: put an icon after every word, fixed order.
+          for (var i = 0; i < items.length; i++) {
+            var iconPath = iconFiles[i % iconFiles.length];
+            // Insert after the label.
+            var next = items[i].nextSibling;
+            items[i].parentNode.insertBefore(makeIconSpan(iconPath), next);
           }
         }
       } catch (_) {}
