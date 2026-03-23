@@ -1773,6 +1773,17 @@ body.work-page.work-3 {
 .work-page .work-connect-frame .marquee-cursor { font-family: "JetBrains Mono", monospace; }
 .work-page .work-connect-frame .marquee-figma { font-family: "Inter", sans-serif; }
 
+/* Icons injected by media/work-page.js (deterministic marquee icons). */
+.work-page .work-connect-frame .hero-footer-bar-marquee-inner .marquee-icon {
+  display: inline-block;
+  width: 112px;
+  height: 112px;
+  flex: 0 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .work-page .work-connect-frame .home-contact-frame {
   position: relative;
   z-index: 1;
